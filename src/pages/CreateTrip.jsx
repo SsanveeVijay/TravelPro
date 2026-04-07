@@ -19,13 +19,12 @@ const CreateTrip = () => {
     const newTrip = {
       id: Date.now().toString(),
       name: tripName.trim(),
-      budget: parseFloat(budget).toFixed(2),
+      budget: parseFloat(budget),
       itinerary: []
     };
 
     const existingTrips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
-    const updatedTrips = [...existingTrips, newTrip];
-    localStorage.setItem('travelProTrips', JSON.stringify(updatedTrips));
+    localStorage.setItem('travelProTrips', JSON.stringify([...existingTrips, newTrip]));
 
     navigate('/');
   };
@@ -61,7 +60,7 @@ const CreateTrip = () => {
           </div>
 
           <div className="form-group">
-            <label>Budget</label>
+            <label>Budget (Rs)</label>
             <input
               type="number"
               value={budget}

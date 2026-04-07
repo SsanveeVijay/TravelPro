@@ -1,16 +1,15 @@
 .trip-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 10px;
   padding: 1.5rem;
   cursor: pointer;
-  transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-  box-shadow: 0 2px 8px var(--shadow);
+  transition: box-shadow var(--transition);
+  box-shadow: 0 2px 6px var(--shadow);
 }
 
 .trip-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 28px var(--shadow-lg);
+  box-shadow: 0 4px 10px var(--shadow);
   border-color: var(--primary);
 }
 
@@ -18,56 +17,42 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   gap: 1rem;
 }
 
 .trip-card-title {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 600;
   color: var(--text);
   flex: 1;
 }
 
 .trip-card-badge {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.4rem 0.75rem;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 0.3rem 0.7rem;
+  background: var(--primary);   /* removed gradient */
   color: white;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.85rem;
-  font-weight: 500;
-  white-space: nowrap;
 }
 
 .trip-card-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 
 .trip-stat {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.75rem;
+  padding: 0.7rem;
   background: var(--background);
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--border);
-}
-
-.trip-icon {
-  color: var(--primary);
-  flex-shrink: 0;
 }
 
 .trip-stat-label {
   font-size: 0.85rem;
   color: var(--text-secondary);
-  margin-bottom: 0.25rem;
 }
 
 .trip-stat-value {
@@ -77,55 +62,49 @@
 }
 
 .budget-tracker {
-  margin-top: 1.25rem;
-  padding-top: 1.25rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--border);
 }
 
 .budget-info {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .budget-label {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  font-weight: 500;
 }
 
 .budget-percentage {
-  font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   color: var(--primary);
 }
 
 .budget-bar {
-  height: 8px;
+  height: 6px;
   background: var(--background);
-  border-radius: 20px;
-  overflow: hidden;
+  border-radius: 6px;
   border: 1px solid var(--border);
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .budget-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  border-radius: 20px;
+  background: var(--primary);   /* removed gradient */
+  border-radius: 6px;
   transition: width var(--transition);
 }
 
-.budget-fill.over-budget {
-  background: linear-gradient(90deg, var(--danger), #f87171);
-}
-
 .budget-remaining {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   text-align: center;
 }
+
+/* Itinerary */
 
 .itinerary-item {
   display: flex;
@@ -135,13 +114,11 @@
   padding: 1rem;
   background: var(--background);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color var(--transition), box-shadow var(--transition);
+  border-radius: 8px;
 }
 
 .itinerary-item:hover {
   border-color: var(--primary);
-  box-shadow: 0 4px 12px var(--shadow);
 }
 
 .itinerary-content {
@@ -152,47 +129,32 @@
 }
 
 .itinerary-day-badge {
-  padding: 0.5rem 0.85rem;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  padding: 0.4rem 0.7rem;
+  background: var(--primary);   /* removed gradient */
   color: white;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 0.85rem;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.itinerary-details {
-  flex: 1;
 }
 
 .itinerary-activity {
   font-size: 1rem;
-  font-weight: 500;
   color: var(--text);
-  margin-bottom: 0.25rem;
 }
 
 .itinerary-cost {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
   font-size: 0.9rem;
   color: var(--text-secondary);
-  font-weight: 500;
 }
 
+/* Delete button */
+
 .delete-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   background: transparent;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  color: var(--text-secondary);
+  border-radius: 6px;
   cursor: pointer;
-  transition: background var(--transition), color var(--transition), border-color var(--transition);
 }
 
 .delete-button:hover {
@@ -200,6 +162,8 @@
   color: white;
   border-color: var(--danger);
 }
+
+/* Responsive */
 
 @media (max-width: 768px) {
   .trip-card-content {

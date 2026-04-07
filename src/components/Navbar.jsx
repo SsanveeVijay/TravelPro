@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="navbar-container">
 
         <Link to="/" className="navbar-logo">
-          <Plane size={22} />
+          <Plane size={20} />
           <span>TravelPro</span>
         </Link>
 
@@ -19,22 +19,14 @@ const Navbar = () => {
 
           <Link
             to="/"
-            className={
-              location.pathname === "/"
-                ? "navbar-link active-btn"
-                : "navbar-link"
-            }
+            className={`navbar-link ${location.pathname === "/" ? "active-btn" : ""}`}
           >
             My Trips
           </Link>
 
           <Link
             to="/create"
-            className={
-              location.pathname === "/create"
-                ? "navbar-link active-btn"
-                : "navbar-link"
-            }
+            className={`navbar-link ${location.pathname === "/create" ? "active-btn" : ""}`}
           >
             Create Trip
           </Link>

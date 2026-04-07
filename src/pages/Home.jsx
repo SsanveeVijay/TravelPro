@@ -5,11 +5,8 @@ const Home = () => {
   const [trips, setTrips] = useState([]);
 
   useEffect(() => {
-    const storedTrips = localStorage.getItem('travelProTrips');
-    if (storedTrips) {
-      const parsedTrips = JSON.parse(storedTrips);
-      setTrips(Array.isArray(parsedTrips) ? parsedTrips : []);
-    }
+    const parsedTrips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
+    setTrips(Array.isArray(parsedTrips) ? parsedTrips : []);
   }, []);
 
   return (
@@ -30,7 +27,6 @@ const Home = () => {
             Create one to get started
           </p>
 
-          {/* Keep this button (useful when no trips exist) */}
           <button 
             onClick={() => window.location.href = '/create'} 
             className="primary-button"
