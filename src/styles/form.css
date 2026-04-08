@@ -1,8 +1,8 @@
 .form-container {
   max-width: 600px;
-  margin: 2rem auto;
+  margin: 1.5rem auto;
   background: var(--surface);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 10px;
   border: 1px solid var(--border);
   box-shadow: 0 2px 8px var(--shadow);
@@ -12,20 +12,20 @@
   font-size: 1.8rem;
   font-weight: 600;
   color: var(--text);
-  margin-bottom: 1rem;
+  margin-bottom: 0.8rem;
 }
 
 .trip-form,
 .activity-form {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
+  gap: 1rem;
 }
 
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
+  gap: 0.3rem;
 }
 
 .form-label {
@@ -36,8 +36,8 @@
 
 .form-input,
 .form-select {
-  padding: 0.7rem 0.9rem;
-  font-size: 1rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.95rem;
   color: var(--text);
   background: var(--background);
   border: 1px solid var(--border);
@@ -59,11 +59,12 @@
 .form-row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .submit-button {
-  padding: 0.9rem;
+  margin-top: 0.5rem;
+  padding: 0.8rem;
   background: var(--primary);
   color: white;
   border: none;
@@ -78,17 +79,17 @@
 }
 
 .error-message {
-  padding: 0.8rem;
+  padding: 0.6rem;
   background: rgba(239, 68, 68, 0.1);
   border: 1px solid var(--danger);
   border-radius: 8px;
   color: var(--danger);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 @media (max-width: 768px) {
   .form-container {
-    padding: 1.5rem;
+    padding: 1.2rem;
     margin: 1rem;
   }
 

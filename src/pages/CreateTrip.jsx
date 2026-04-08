@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/form.css';
+import { getTrips, saveTrips } from '../utils/storage';
 
 const CreateTrip = () => {
   const [tripName, setTripName] = useState('');
@@ -23,49 +24,40 @@ const CreateTrip = () => {
       itinerary: []
     };
 
-    const existingTrips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
-    localStorage.setItem('travelProTrips', JSON.stringify([...existingTrips, newTrip]));
+    const existingTrips = getTrips();
+    saveTrips([...existingTrips, newTrip]);
 
     navigate('/');
   };
 
   return (
-    <div className="form-page">
-      
-      <button 
-        onClick={() => navigate('/')} 
-        className="back-button"
-      >
+    <div className="form-page create-trip-page">
+      <button onClick={() => navigate('/')} className="back-button">
         ← Back
       </button>
 
       <div className="form-container">
-        <h2>Create New Trip</h2>
+        <h2 className="form-title">Create New Trip</h2>
 
-        {error && (
-          <p className="error-message">{error}</p>
-        )}
+        {error && <p className="error-message">{error}</p>}
 
-        <form onSubmit={handleSubmit}>
-          
+        <form onSubmit={handleSubmit} className="trip-form">
           <div className="form-group">
-            <label>Trip Name</label>
+            <label className="form-label">Trip Name</label>
             <input
               type="text"
               value={tripName}
               onChange={(e) => setTripName(e.target.value)}
-              placeholder="Enter trip name"
               className="form-input"
             />
           </div>
 
           <div className="form-group">
-            <label>Budget (Rs)</label>
+            <label className="form-label">Budget (Rs)</label>
             <input
               type="number"
               value={budget}
               onChange={(e) => setBudget(e.target.value)}
-              placeholder="Enter budget"
               className="form-input"
             />
           </div>
@@ -73,7 +65,6 @@ const CreateTrip = () => {
           <button type="submit" className="submit-button">
             Create Trip
           </button>
-
         </form>
       </div>
     </div>

@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import ItineraryItem from '../components/ItineraryItem';
 import '../styles/form.css';
+import { calculateBudget } from '../utils/budget';
+import { getTrips, saveTrips } from '../utils/storage';
 
 const TripDetails = () => {
   const { id } = useParams();
@@ -19,13 +21,12 @@ const TripDetails = () => {
 
   const loadTrip = () => {
     try {
-      const trips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
+      const trips = getTrips();
       const foundTrip = trips.find(t => t.id === id);
 
       if (foundTrip) setTrip(foundTrip);
       else navigate('/');
-    } catch (error) {
-      console.error('Error loading trip:', error);
+    } catch {
       navigate('/');
     }
   };
@@ -52,7 +53,7 @@ const TripDetails = () => {
     };
 
     try {
-      const trips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
+      const trips = getTrips();
 
       const updatedTrips = trips.map(t =>
         t.id === id
@@ -60,21 +61,20 @@ const TripDetails = () => {
           : t
       );
 
-      localStorage.setItem('travelProTrips', JSON.stringify(updatedTrips));
+      saveTrips(updatedTrips);
 
       setActivity('');
       setCost('');
       setDay('Day 1');
       loadTrip();
-    } catch (error) {
-      console.error('Error adding activity:', error);
+    } catch {
       setError('Failed to add activity');
     }
   };
 
   const handleDeleteActivity = (activityId) => {
     try {
-      const trips = JSON.parse(localStorage.getItem('travelProTrips') || '[]');
+      const trips = getTrips();
 
       const updatedTrips = trips.map(t =>
         t.id === id
@@ -85,11 +85,9 @@ const TripDetails = () => {
           : t
       );
 
-      localStorage.setItem('travelProTrips', JSON.stringify(updatedTrips));
+      saveTrips(updatedTrips);
       loadTrip();
-    } catch (error) {
-      console.error('Error deleting activity:', error);
-    }
+    } catch {}
   };
 
   if (!trip) {
@@ -100,19 +98,10 @@ const TripDetails = () => {
     );
   }
 
-  const totalSpent =
-    trip.itinerary?.reduce((sum, item) => sum + (parseFloat(item.cost) || 0), 0) || 0;
-
-  const remainingBudget = parseFloat(trip.budget) - totalSpent;
-
-  const budgetPercentage = Math.min(
-    (totalSpent / parseFloat(trip.budget)) * 100,
-    100
-  );
+  const { totalSpent, remaining, percentage } = calculateBudget(trip);
 
   return (
     <div className="page-container">
-      
       <button onClick={() => navigate('/')} className="back-button">
         ← Back
       </button>
@@ -128,32 +117,45 @@ const TripDetails = () => {
         <div className="budget-card">
           <h3>Budget Overview</h3>
 
-          <p>Total: Rs {parseFloat(trip.budget).toFixed(2)}</p>
-          <p>Spent: Rs {totalSpent.toFixed(2)}</p>
-          <p>Remaining: Rs {Math.abs(remainingBudget).toFixed(2)}</p>
+         <div className="budget-stats">
+  <div>
+    <p>Total</p>
+    <p className="budget-stat-amount">Rs {parseFloat(trip.budget).toFixed(2)}</p>
+  </div>
+
+  <div>
+    <p>Spent</p>
+    <p className="budget-stat-amount">Rs {totalSpent.toFixed(2)}</p>
+  </div>
+
+  <div>
+    <p>Remaining</p>
+    <p className="budget-stat-amount">
+      Rs {Math.abs(remaining).toFixed(2)}
+    </p>
+  </div>
+</div>
 
           <div className="budget-bar">
             <div
               className="budget-fill"
-              style={{ width: `${budgetPercentage}%` }}
-            ></div>
+              style={{ width: `${percentage}%` }}
+            />
           </div>
 
-          <p>{budgetPercentage.toFixed(0)}% used</p>
+          <p>{percentage.toFixed(0)}% used</p>
         </div>
       </div>
 
       <div className="content-grid">
-
         <div className="form-container">
-          <h2>Add Activity</h2>
+          <h2 className="form-title">Add Activity</h2>
 
           {error && <p className="error-message">{error}</p>}
 
-          <form onSubmit={handleAddActivity}>
-
+          <form onSubmit={handleAddActivity} className="activity-form">
             <div className="form-group">
-              <label>Activity Name</label>
+              <label className="form-label">Activity Name</label>
               <input
                 type="text"
                 value={activity}
@@ -164,7 +166,7 @@ const TripDetails = () => {
 
             <div className="form-row">
               <div className="form-group">
-                <label>Day</label>
+                <label className="form-label">Day</label>
                 <select
                   value={day}
                   onChange={(e) => setDay(e.target.value)}
@@ -181,7 +183,7 @@ const TripDetails = () => {
               </div>
 
               <div className="form-group">
-                <label>Cost (Rs)</label>
+                <label className="form-label">Cost (Rs)</label>
                 <input
                   type="number"
                   value={cost}
@@ -194,7 +196,6 @@ const TripDetails = () => {
             <button type="submit" className="submit-button">
               Add Activity
             </button>
-
           </form>
         </div>
 
@@ -215,7 +216,6 @@ const TripDetails = () => {
             </div>
           )}
         </div>
-
       </div>
     </div>
   );

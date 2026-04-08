@@ -40,13 +40,10 @@
   color: var(--primary);
 }
 
-/* ✅ ACTIVE BUTTON (FIXED POSITION) */
 .active-btn {
   background-color: var(--primary);
   color: white !important;
 }
-
-/* Responsive */
 
 @media (max-width: 768px) {
   .navbar-container {
