@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import CreateTrip from './pages/CreateTrip';
@@ -9,14 +9,14 @@ import './styles/global.css';
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <Router>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<CreateTrip />} />
           <Route path="/trip/:id" element={<TripDetails />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </div>
   );
 }

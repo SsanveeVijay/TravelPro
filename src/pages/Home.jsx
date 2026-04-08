@@ -22,7 +22,7 @@ const Home = () => {
       </div>
 
       {trips.length === 0 ? (
-        <div className="empty-state">
+        <div className="empty-state home-empty">
           <h2 className="empty-title">No trips yet</h2>
           <p className="empty-text">Create one to get started</p>
 
