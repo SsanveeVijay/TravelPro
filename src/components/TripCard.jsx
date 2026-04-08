@@ -4,14 +4,28 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/card.css';
 import { calculateBudget } from '../utils/budget';
 
-const TripCard = ({ trip }) => {
+const TripCard = ({ trip, onDelete }) => {
   const navigate = useNavigate();
 
   const itineraryCount = trip.itinerary?.length || 0;
   const { totalSpent, remaining, percentage } = calculateBudget(trip);
 
   return (
-    <div className="trip-card" onClick={() => navigate(`/trip/${trip.id}`)}>
+    <div
+      className="trip-card"
+      onClick={() => navigate(`/trip/${trip.id}`)}
+    >
+      {/* 🔥 Delete Button */}
+      <button
+        className="delete-trip-btn"
+        onClick={(e) => {
+          e.stopPropagation(); // prevent navigation
+          onDelete(trip.id);
+        }}
+      >
+        Delete
+      </button>
+
       <div className="trip-card-header">
         <h3 className="trip-card-title">
           {trip.name || 'Untitled Trip'}
@@ -64,7 +78,8 @@ const TripCard = ({ trip }) => {
 };
 
 TripCard.propTypes = {
-  trip: PropTypes.object.isRequired
+  trip: PropTypes.object.isRequired,
+  onDelete: PropTypes.func.isRequired
 };
 
 export default TripCard;

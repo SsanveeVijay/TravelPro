@@ -111,7 +111,27 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.trip-card {
+  position: relative; 
+}
 
+.delete-trip-btn {
+  position: absolute;
+  top: 28px;
+  right: 110px;
+  transform: translateY(-50%); /* move slightly above */
+  background: var(--danger);
+  color: white;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.delete-trip-btn:hover {
+  opacity: 0.9;
+}
 .delete-button:hover {
   background: var(--danger);
   color: white;

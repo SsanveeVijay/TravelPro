@@ -45,11 +45,20 @@ const TripDetails = () => {
       return;
     }
 
+    // 🔥 NEW: Budget validation
+    const currentSpent = calculateBudget(trip).totalSpent;
+    const newCost = cost ? parseFloat(cost) : 0;
+
+    if (currentSpent + newCost > parseFloat(trip.budget)) {
+      setError('Budget exceeded! Cannot add this activity.');
+      return;
+    }
+
     const newActivity = {
       id: Date.now().toString(),
       activity: activity.trim(),
       day,
-      cost: cost ? parseFloat(cost).toFixed(2) : '0.00'
+      cost: newCost.toFixed(2)
     };
 
     try {
@@ -117,24 +126,31 @@ const TripDetails = () => {
         <div className="budget-card">
           <h3>Budget Overview</h3>
 
-         <div className="budget-stats">
-  <div>
-    <p>Total</p>
-    <p className="budget-stat-amount">Rs {parseFloat(trip.budget).toFixed(2)}</p>
-  </div>
+          <div className="budget-stats">
+            <div>
+              <p>Total</p>
+              <p className="budget-stat-amount">
+                Rs {parseFloat(trip.budget).toFixed(2)}
+              </p>
+            </div>
 
-  <div>
-    <p>Spent</p>
-    <p className="budget-stat-amount">Rs {totalSpent.toFixed(2)}</p>
-  </div>
+            <div>
+              <p>Spent</p>
+              <p className="budget-stat-amount">
+                Rs {totalSpent.toFixed(2)}
+              </p>
+            </div>
 
-  <div>
-    <p>Remaining</p>
-    <p className="budget-stat-amount">
-      Rs {Math.abs(remaining).toFixed(2)}
-    </p>
-  </div>
-</div>
+            <div>
+              <p>Remaining</p>
+              <p className="budget-stat-amount">
+                {remaining >= 0
+                  ? `Rs ${remaining.toFixed(2)}`
+                  : `Exceeded by Rs ${Math.abs(remaining).toFixed(2)}`
+                }
+              </p>
+            </div>
+          </div>
 
           <div className="budget-bar">
             <div

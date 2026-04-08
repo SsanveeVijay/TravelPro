@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TripCard from '../components/TripCard';
-import { getTrips } from '../utils/storage';
-import AppInfo from '../components/AppInfo';
+import { getTrips, saveTrips } from '../utils/storage';
 
 const Home = () => {
   const [trips, setTrips] = useState([]);
@@ -11,6 +10,13 @@ const Home = () => {
   useEffect(() => {
     setTrips(getTrips());
   }, []);
+
+  // 🔥 DELETE FUNCTION
+  const handleDeleteTrip = (id) => {
+    const updatedTrips = trips.filter(trip => trip.id !== id);
+    setTrips(updatedTrips);
+    saveTrips(updatedTrips);
+  };
 
   return (
     <div className="page-container">
@@ -33,11 +39,15 @@ const Home = () => {
       ) : (
         <div className="trips-grid">
           {trips.map((trip) => (
-            <TripCard key={trip.id} trip={trip} />
+            <TripCard
+              key={trip.id}
+              trip={trip}
+              onDelete={handleDeleteTrip}
+            />
           ))}
         </div>
       )}
-      <AppInfo />
+
     </div>
   );
 };
