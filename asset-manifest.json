@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/TravelPro/static/css/main.ab4519bd.css",
-    "main.js": "/TravelPro/static/js/main.cfd28d5e.js",
+    "main.css": "/TravelPro/static/css/main.dece6e1a.css",
+    "main.js": "/TravelPro/static/js/main.ff0af4e3.js",
     "index.html": "/TravelPro/index.html",
-    "main.ab4519bd.css.map": "/TravelPro/static/css/main.ab4519bd.css.map",
-    "main.cfd28d5e.js.map": "/TravelPro/static/js/main.cfd28d5e.js.map"
+    "main.dece6e1a.css.map": "/TravelPro/static/css/main.dece6e1a.css.map",
+    "main.ff0af4e3.js.map": "/TravelPro/static/js/main.ff0af4e3.js.map"
   },
   "entrypoints": [
-    "static/css/main.ab4519bd.css",
-    "static/js/main.cfd28d5e.js"
+    "static/css/main.dece6e1a.css",
+    "static/js/main.ff0af4e3.js"
   ]
 }
