@@ -31,29 +31,21 @@
 .form-label {
   font-size: 0.9rem;
   font-weight: 600;
-  color: var(--text);
 }
 
 .form-input,
 .form-select {
   padding: 0.6rem 0.8rem;
   font-size: 0.95rem;
-  color: var(--text);
   background: var(--background);
   border: 1px solid var(--border);
   border-radius: 8px;
-  font-family: inherit;
 }
 
 .form-input:focus,
 .form-select:focus {
   outline: none;
   border-color: var(--primary);
-}
-
-.form-input::placeholder {
-  color: var(--text-secondary);
-  opacity: 0.6;
 }
 
 .form-row {
@@ -69,7 +61,6 @@
   color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
 }
