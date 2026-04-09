@@ -12,7 +12,10 @@ class AppInfo extends Component {
       version: "v1.0",
     };
   }
-
+// Lifecycle method (runs after component is mounted)
+  componentDidMount() {
+    console.log("AppInfo component mounted");
+  }
   render() {
     return (
       // Inline styling
