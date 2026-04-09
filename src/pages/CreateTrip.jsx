@@ -4,19 +4,24 @@ import '../styles/form.css';
 import { getTrips, saveTrips } from '../utils/storage';
 
 const CreateTrip = () => {
+
+  // Controlled inputs → state manages input values
   const [tripName, setTripName] = useState('');
   const [budget, setBudget] = useState('');
   const [error, setError] = useState('');
+
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault(); // prevent page reload
 
+    // Validation
     if (!tripName.trim() || !budget) {
       setError('Please fill all fields');
       return;
     }
 
+    // Creating new object
     const newTrip = {
       id: Date.now().toString(),
       name: tripName.trim(),
@@ -24,6 +29,7 @@ const CreateTrip = () => {
       itinerary: []
     };
 
+    // Data persistence
     const existingTrips = getTrips();
     saveTrips([...existingTrips, newTrip]);
 
@@ -32,6 +38,8 @@ const CreateTrip = () => {
 
   return (
     <div className="form-page create-trip-page">
+
+      {/* Navigation */}
       <button onClick={() => navigate('/')} className="back-button">
         ← Back
       </button>
@@ -39,15 +47,18 @@ const CreateTrip = () => {
       <div className="form-container">
         <h2 className="form-title">Create New Trip</h2>
 
+        {/* Conditional rendering */}
         {error && <p className="error-message">{error}</p>}
 
+        {/* Form handling */}
         <form onSubmit={handleSubmit} className="trip-form">
+
           <div className="form-group">
             <label className="form-label">Trip Name</label>
             <input
               type="text"
               value={tripName}
-              onChange={(e) => setTripName(e.target.value)}
+              onChange={(e) => setTripName(e.target.value)} // controlled input
               className="form-input"
             />
           </div>

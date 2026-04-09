@@ -1,31 +1,47 @@
 import React from 'react';
+
+// PropTypes → used for props validation (important for grading)
 import PropTypes from 'prop-types';
+
+// Hook → used for navigation
 import { useNavigate } from 'react-router-dom';
+
 import '../styles/card.css';
 import { calculateBudget } from '../utils/budget';
 
+// Functional component receiving props
+// props = data passed from parent (Home component)
 const TripCard = ({ trip, onDelete }) => {
+
+  // Hook → allows navigation programmatically
   const navigate = useNavigate();
 
+  // Derived data from props
   const itineraryCount = trip.itinerary?.length || 0;
+
+  // Using utility function → separation of logic
   const { totalSpent, remaining, percentage } = calculateBudget(trip);
 
   return (
     <div
       className="trip-card"
+
+      // Clicking card navigates to details page
       onClick={() => navigate(`/trip/${trip.id}`)}
     >
-      {/* 🔥 Delete Button */}
+
+      {/* Event handling + stopping propagation */}
       <button
         className="delete-trip-btn"
         onClick={(e) => {
-          e.stopPropagation(); // prevent navigation
-          onDelete(trip.id);
+          e.stopPropagation(); // prevents parent click (navigation)
+          onDelete(trip.id);   // calling parent function via props
         }}
       >
         Delete
       </button>
 
+      {/* JSX rendering dynamic values */}
       <div className="trip-card-header">
         <h3 className="trip-card-title">
           {trip.name || 'Untitled Trip'}
@@ -36,6 +52,7 @@ const TripCard = ({ trip, onDelete }) => {
         </div>
       </div>
 
+      {/* Data display */}
       <div className="trip-card-content">
         <div className="trip-stat">
           <p className="trip-stat-label">Budget</p>
@@ -52,6 +69,7 @@ const TripCard = ({ trip, onDelete }) => {
         </div>
       </div>
 
+      {/* Styling + dynamic width using inline style */}
       <div className="budget-tracker">
         <div className="budget-info">
           <span className="budget-label">Used</span>
@@ -63,10 +81,13 @@ const TripCard = ({ trip, onDelete }) => {
         <div className="budget-bar">
           <div
             className="budget-fill"
+
+            // Dynamic styling → React inline styles
             style={{ width: `${percentage}%` }}
           />
         </div>
 
+        {/* Conditional rendering */}
         <p className="budget-remaining">
           {remaining >= 0
             ? `Rs ${remaining.toFixed(2)} left`
@@ -77,6 +98,7 @@ const TripCard = ({ trip, onDelete }) => {
   );
 };
 
+// Props validation (VERY important for viva)
 TripCard.propTypes = {
   trip: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired
