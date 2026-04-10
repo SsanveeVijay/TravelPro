@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import CreateTrip from './pages/CreateTrip';
 import TripDetails from './pages/TripDetails';
+import AppInfo from './components/AppInfo';
 
 // Global CSS styling applied to entire app
 import './styles/global.css';
@@ -35,6 +36,7 @@ function App() {
           <Route path="/trip/:id" element={<TripDetails />} />
 
         </Routes>
+        <AppInfo />
       </Router>
     </div>
   );

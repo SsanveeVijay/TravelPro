@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-// Class Component (older React approach)
+// Class Component
 class AppInfo extends Component {
 
   // Constructor → used to initialize state
