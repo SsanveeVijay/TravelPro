@@ -1,9 +1,9 @@
 import React from 'react';
 
-// PropTypes → used for props validation (important for grading)
+// PropTypes - used for props validation
 import PropTypes from 'prop-types';
 
-// Hook → used for navigation
+// Hook - used for navigation
 import { useNavigate } from 'react-router-dom';
 
 import '../styles/card.css';
@@ -13,13 +13,13 @@ import { calculateBudget } from '../utils/budget';
 // props = data passed from parent (Home component)
 const TripCard = ({ trip, onDelete }) => {
 
-  // Hook → allows navigation programmatically
+  // Hook → allows navigation
   const navigate = useNavigate();
 
   // Derived data from props
   const itineraryCount = trip.itinerary?.length || 0;
 
-  // Using utility function → separation of logic
+  // Using utility function, separation of logic
   const { totalSpent, remaining, percentage } = calculateBudget(trip);
 
   return (
@@ -82,7 +82,7 @@ const TripCard = ({ trip, onDelete }) => {
           <div
             className="budget-fill"
 
-            // Dynamic styling → React inline styles
+            // Dynamic styling, React inline styles
             style={{ width: `${percentage}%` }}
           />
         </div>
@@ -98,7 +98,7 @@ const TripCard = ({ trip, onDelete }) => {
   );
 };
 
-// Props validation (VERY important for viva)
+// Props validation
 TripCard.propTypes = {
   trip: PropTypes.object.isRequired,
   onDelete: PropTypes.func.isRequired

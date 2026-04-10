@@ -5,7 +5,7 @@ import { getTrips, saveTrips } from '../utils/storage';
 
 const CreateTrip = () => {
 
-  // Controlled inputs → state manages input values
+  // Controlled inputs - state manages input values
   const [tripName, setTripName] = useState('');
   const [budget, setBudget] = useState('');
   const [error, setError] = useState('');
@@ -41,7 +41,7 @@ const CreateTrip = () => {
 
       {/* Navigation */}
       <button onClick={() => navigate('/')} className="back-button">
-        ← Back
+        Back
       </button>
 
       <div className="form-container">

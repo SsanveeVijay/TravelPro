@@ -5,11 +5,11 @@ const KEY = 'travelProTrips';
 // Function to GET trips from localStorage
 export const getTrips = () => {
   try {
-    // localStorage stores data as string → we retrieve it using the key
+    // localStorage stores data as string, we retrieve it using the key
     const data = localStorage.getItem('travelProTrips');
 
-    // If data exists → convert string back to JavaScript object using JSON.parse
-    // If not → return empty array (so app doesn't crash)
+    // If data exists, convert string back to JavaScript object using JSON.parse
+    // If not, return empty array (so app doesn't crash)
     return data ? JSON.parse(data) : [];
 
   } catch {
@@ -21,5 +21,5 @@ export const getTrips = () => {
 // Function to SAVE trips to localStorage
 export const saveTrips = (trips) =>
 
-  // localStorage only stores strings → convert object to string using JSON.stringify
+  // localStorage only stores strings, convert object to string using JSON.stringify
   localStorage.setItem(KEY, JSON.stringify(trips));

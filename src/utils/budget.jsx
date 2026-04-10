@@ -1,5 +1,5 @@
 // Function to calculate budget details for a trip
-// This is a pure function → it does not modify input, only returns calculated values
+// This is a pure function, it does not modify input, only returns calculated values
 export const calculateBudget = (trip) => {
 
   // Calculate total spent by summing all itinerary item costs

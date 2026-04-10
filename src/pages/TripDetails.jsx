@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-// useParams → used to get dynamic route parameter (:id)
-// useNavigate → used for programmatic navigation
+// useParams - used to get dynamic route parameter (:id)
+// useNavigate - used for programmatic navigation
 import { useParams, useNavigate } from 'react-router-dom';
 
 import ItineraryItem from '../components/ItineraryItem';
@@ -25,7 +25,7 @@ const TripDetails = () => {
   const [cost, setCost] = useState('');
   const [error, setError] = useState('');
 
-  // useEffect → acts like componentDidMount
+  // useEffect - acts like componentDidMount
   // Runs whenever 'id' changes
   useEffect(() => {
     loadTrip();
@@ -39,10 +39,10 @@ const TripDetails = () => {
       // Find trip with matching id
       const foundTrip = trips.find(t => t.id === id);
 
-      // If found → update state
+      // If found - update state
       if (foundTrip) setTrip(foundTrip);
 
-      // If not found → redirect to home
+      // If not found - redirect to home
       else navigate('/');
     } catch {
       navigate('/');
@@ -73,7 +73,7 @@ const TripDetails = () => {
     // Convert new cost to number
     const newCost = cost ? parseFloat(cost) : 0;
 
-    // Business logic validation → budget should not be exceeded
+    // Business logic validation - budget should not be exceeded
     if (currentSpent + newCost > parseFloat(trip.budget)) {
       setError('Budget exceeded! Cannot add this activity.');
       return;
@@ -142,7 +142,7 @@ const TripDetails = () => {
     } catch {}
   };
 
-  // Conditional rendering → while data is loading
+  // Conditional rendering - while data is loading
   if (!trip) {
     return (
       <div className="page-container">
@@ -201,7 +201,7 @@ const TripDetails = () => {
             </div>
           </div>
 
-          {/* Dynamic styling → width based on percentage */}
+          {/* Dynamic styling - width based on percentage */}
           <div className="budget-bar">
             <div
               className="budget-fill"

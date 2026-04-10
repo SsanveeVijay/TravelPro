@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import TripCard from '../components/TripCard';
 
-// Utility functions (data persistence)
+// Utility functions 
 import { getTrips, saveTrips } from '../utils/storage';
 
 const Home = () => {
 
-  // State → stores trips (React Dataflow)
+  // State - stores trips (React Dataflow)
   const [trips, setTrips] = useState([]);
 
   const navigate = useNavigate();
 
-  // useEffect → runs after component mounts (lifecycle equivalent)
+  // useEffect - runs after component mounts (lifecycle equivalent)
   useEffect(() => {
     setTrips(getTrips()); // load from localStorage
   }, []);
@@ -52,7 +52,7 @@ const Home = () => {
       ) : (
         <div className="trips-grid">
 
-          {/* Mapping over state → rendering list */}
+          {/* Mapping over state - rendering list */}
           {trips.map((trip) => (
             <TripCard
               key={trip.id}          // key required for lists

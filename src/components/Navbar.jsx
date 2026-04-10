@@ -1,7 +1,7 @@
 import React from 'react';
 
-// Link → used instead of <a> to avoid page reload
-// useLocation → gives current URL path (used for active styling)
+// Link - used instead of <a> to avoid page reload
+// useLocation - gives current URL path
 import { Link, useLocation } from 'react-router-dom';
 
 import '../styles/navbar.css';
@@ -10,11 +10,11 @@ import { Plane } from 'lucide-react';
 // Functional Component
 const Navbar = () => {
 
-  // Hook → gives current route info
+  // Hook - gives current route info
   const location = useLocation();
 
   return (
-    // JSX → HTML-like syntax inside JavaScript
+    // JSX - HTML-like syntax inside JavaScript
     <nav className="navbar">
       <div className="navbar-container">
 
