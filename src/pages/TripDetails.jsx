@@ -73,7 +73,7 @@ const TripDetails = () => {
     // Convert new cost to number
     const newCost = cost ? parseFloat(cost) : 0;
 
-    // Business logic validation - budget should not be exceeded
+    // Check budget should not be exceeded
     if (currentSpent + newCost > parseFloat(trip.budget)) {
       setError('Budget exceeded! Cannot add this activity.');
       return;
